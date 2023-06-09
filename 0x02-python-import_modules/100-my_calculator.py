@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 if __name__ == "__main__":
-    """Handle basic arithmetic operations."""
     from calculator_1 import add, sub, mul, div
     import sys
 
@@ -10,9 +9,26 @@ if __name__ == "__main__":
         sys.exit(1)
 
     ops = {"+": add, "-": sub, "*": mul, "/": div}
-    if sys.argv[2] not in list(ops.keys()):
+    if sys.argv[2] not in ops:
         print("Unknown operator. Available operators: +, -, * and /")
         sys.exit(1)
+
     a = int(sys.argv[1])
+    operator = sys.argv[2]
     b = int(sys.argv[3])
-    print("{} {} {} = {}".format(a, sys.argv[2], b, ops[sys.argv[2]](a, b)))
+
+    result = None
+    if operator == "+":
+        result = ops[operator](a, b)
+    elif operator == "-":
+        result = ops[operator](a, b)
+    elif operator == "*":
+        result = ops[operator](a, b)
+    elif operator == "/":
+        if b == 0:
+            print("Error: Division by zero is not allowed.")
+            sys.exit(1)
+        result = ops[operator](a, b)
+
+    print("{} {} {} = {}".format(a, operator, b, result))
+
